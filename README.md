@@ -1,13 +1,42 @@
-# 图片相似度计算工具
+# similaRS
 
-## 用法
+similaRS is a tool for calculating picture similarity. Written in Rust.
 
-前往 [releases](https://github.com/jerryshell/similar-image/releases) 页面下载 `similar-image.jar`
+## Usage
 
-```bash
-java -jar similar-image.jar imgA.jpg imgB.jpg
+```
+$ ./similars --help
+similars 0.1.0
+github.com/jerryshell/similars
+
+USAGE:
+    similars [OPTIONS] --image-x-path <IMAGE_X_PATH> --image-y-path <IMAGE_Y_PATH>
+
+OPTIONS:
+    -h, --convert-height <CONVERT_HEIGHT>    [default: 8]
+        --help                               Print help information
+    -V, --version                            Print version information
+    -w, --convert-width <CONVERT_WIDTH>      [default: 8]
+    -x, --image-x-path <IMAGE_X_PATH>        
+    -y, --image-y-path <IMAGE_Y_PATH>
 ```
 
-## 参考文章
+## Example
 
-* [相似图片搜索的原理 - 阮一峰](http://www.ruanyifeng.com/blog/2011/07/principle_of_similar_image_search.html)
+```
+$ ./similars -x example_img1.jpg -y example_img2.jpg
+8
+```
+
+```
+$ ./similars -x example_img1.jpg -y example_img1.jpg
+0
+```
+
+## References
+
+* [https://www.ruanyifeng.com/blog/2011/07/principle_of_similar_image_search.html](https://www.ruanyifeng.com/blog/2011/07/principle_of_similar_image_search.html)
+
+## License
+
+[GNU Affero General Public License v3.0](https://choosealicense.com/licenses/agpl-3.0/)
