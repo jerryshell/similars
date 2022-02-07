@@ -17,7 +17,7 @@ OPTIONS:
             By default, the output is a percentile of similarity, and if this parameter is
             explicitly specified, the output is hamming distance.
 
-    -h, --convert-height <CONVERT_HEIGHT>
+    -h, --hamming-height <HAMMING_HEIGHT>
             [default: 8]
 
         --help
@@ -26,7 +26,7 @@ OPTIONS:
     -V, --version
             Print version information
 
-    -w, --convert-width <CONVERT_WIDTH>
+    -w, --hamming-width <HAMMING_WIDTH>
             [default: 8]
 
     -x, --image-x-path <IMAGE_X_PATH>
@@ -40,7 +40,7 @@ OPTIONS:
 By default, the output is a percentile of similarity.
 
 ```
-$ ./similars -x example_img1.jpg -y example_img2.jpg   
+$ ./similars -x example_img1.jpg -y example_img2.jpg
 87.5
 ```
 

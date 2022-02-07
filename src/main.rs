@@ -8,9 +8,9 @@ struct Args {
     #[clap(short = 'y', long)]
     image_y_path: String,
     #[clap(short = 'w', long, default_value_t = 8)]
-    convert_width: u32,
+    hamming_width: u32,
     #[clap(short = 'h', long, default_value_t = 8)]
-    convert_height: u32,
+    hamming_height: u32,
     #[clap(
         short = 'd',
         long,
@@ -25,8 +25,8 @@ fn main() {
     let distance = similars::get_image_distance_by_path(
         args.image_x_path,
         args.image_y_path,
-        args.convert_width,
-        args.convert_height,
+        args.hamming_width,
+        args.hamming_height,
     );
 
     if args.distance_flag {
@@ -35,7 +35,7 @@ fn main() {
     }
 
     let percentile =
-        (1.0f32 - distance as f32 / (args.convert_width * args.convert_height) as f32) * 100.0f32;
+        (1.0f32 - distance as f32 / (args.hamming_width * args.hamming_height) as f32) * 100.0f32;
 
     println!("{}", percentile);
 }
