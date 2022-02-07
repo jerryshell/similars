@@ -6,31 +6,49 @@ similaRS is a tool for calculating picture similarity. Written in Rust.
 
 ```
 $ ./similars --help
-similars 0.1.0
+similars 0.2.0
 github.com/jerryshell/similars
 
 USAGE:
     similars [OPTIONS] --image-x-path <IMAGE_X_PATH> --image-y-path <IMAGE_Y_PATH>
 
 OPTIONS:
-    -h, --convert-height <CONVERT_HEIGHT>    [default: 8]
-        --help                               Print help information
-    -V, --version                            Print version information
-    -w, --convert-width <CONVERT_WIDTH>      [default: 8]
-    -x, --image-x-path <IMAGE_X_PATH>        
+    -d, --distance-flag
+            By default, the output is a percentile of similarity, and if this parameter is
+            explicitly specified, the output is hamming distance.
+
+    -h, --convert-height <CONVERT_HEIGHT>
+            [default: 8]
+
+        --help
+            Print help information
+
+    -V, --version
+            Print version information
+
+    -w, --convert-width <CONVERT_WIDTH>
+            [default: 8]
+
+    -x, --image-x-path <IMAGE_X_PATH>
+            
+
     -y, --image-y-path <IMAGE_Y_PATH>
 ```
 
 ## Example
 
-```
-$ ./similars -x example_img1.jpg -y example_img2.jpg
-8
-```
+By default, the output is a percentile of similarity.
 
 ```
-$ ./similars -x example_img1.jpg -y example_img1.jpg
-0
+$ ./similars -x example_img1.jpg -y example_img2.jpg   
+87.5
+```
+
+If `-d` parameter is explicitly specified, the output is hamming distance.
+
+```
+$ ./similars -d -x example_img1.jpg -y example_img2.jpg
+8
 ```
 
 ## References
