@@ -18,12 +18,9 @@ pub fn get_image_hash_by_path(path: String, convert_width: u32, convert_height: 
     let img_resize_gray_avg = img_resize_gray_sum / (convert_width * convert_height);
     img_resize_gray
         .iter()
-        .map(|p| {
-            if img_resize_gray_avg > *p as u32 {
-                1
-            } else {
-                0
-            }
+        .map(|p| match p {
+            p if img_resize_gray_avg >= *p as u32 => 1,
+            _ => 0,
         })
         .collect::<Vec<u8>>()
 }
