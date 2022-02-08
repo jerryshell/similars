@@ -7,7 +7,7 @@ pub fn get_resize_gray_image_by_path(
     hamming_height: u32,
     debug_flag: bool,
 ) -> Result<image::GrayImage> {
-    let img = image::io::Reader::open(path).unwrap().decode().unwrap();
+    let img = image::io::Reader::open(path)?.decode()?;
 
     let img_resize = img.resize_exact(
         hamming_width,
@@ -75,7 +75,10 @@ pub fn get_image_distance_by_path(
     let img_distance = img_x_hash
         .iter()
         .enumerate()
-        .filter(|(index, item)| **item != *img_y_hash.get(*index).unwrap())
+        .filter(|(index, item)| match (*img_y_hash).get(*index) {
+            Some(yp) => **item != *yp,
+            None => false,
+        })
         .count();
     if debug_flag {
         println!("img_distance {}", img_distance);
