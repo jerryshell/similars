@@ -30,7 +30,8 @@ fn main() {
         args.hamming_width,
         args.hamming_height,
         args.debug_flag,
-    );
+    )
+    .unwrap();
 
     if args.distance_flag {
         println!("{}", distance);

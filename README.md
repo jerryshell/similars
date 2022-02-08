@@ -5,10 +5,6 @@ similaRS is a tool for calculating picture similarity. Written in Rust.
 ## Usage
 
 ```
-$ ./similars_cli --help
-similars_cli 0.2.0
-github.com/jerryshell
-
 USAGE:
     similars_cli [OPTIONS] --image-x-path <IMAGE_X_PATH> --image-y-path <IMAGE_Y_PATH>
 
