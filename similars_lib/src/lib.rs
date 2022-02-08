@@ -24,13 +24,13 @@ pub fn get_resize_gray_image_by_path(
 }
 
 pub fn get_image_hash_by_path(
-    path: String,
+    path: &str,
     hamming_width: u32,
     hamming_height: u32,
     debug_flag: bool,
 ) -> Result<Vec<u8>> {
     let img_resize_gray =
-        get_resize_gray_image_by_path(&path, hamming_width, hamming_height, debug_flag)?;
+        get_resize_gray_image_by_path(path, hamming_width, hamming_height, debug_flag)?;
     if debug_flag {
         if let Some(filename) = path.split('/').last() {
             println!("filename {}", filename);
@@ -54,8 +54,8 @@ pub fn get_image_hash_by_path(
 }
 
 pub fn get_image_distance_by_path(
-    image_x_path: String,
-    image_y_path: String,
+    image_x_path: &str,
+    image_y_path: &str,
     hamming_width: u32,
     hamming_height: u32,
     debug_flag: bool,
