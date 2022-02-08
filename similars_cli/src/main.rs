@@ -22,7 +22,7 @@ struct Args {
 fn main() {
     let args = Args::parse();
 
-    let distance = similars::get_image_distance_by_path(
+    let distance = similars_lib::get_image_distance_by_path(
         args.image_x_path,
         args.image_y_path,
         args.hamming_width,

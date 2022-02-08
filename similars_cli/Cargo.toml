@@ -1,0 +1,8 @@
+[package]
+name = "similars_cli"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+similars_lib = { path = "../similars_lib" }
+clap = { version = "3.0.14", features = ["derive"] }

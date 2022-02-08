@@ -1,12 +1,5 @@
-[package]
-name = "similars"
-version = "0.2.0"
-edition = "2021"
-authors = ["github.com/jerryshell/similars"]
-
-[dependencies]
-clap = { version = "3.0.14", features = ["derive"] }
-image = "0.24.0"
+[workspace]
+members = ["similars_lib", "similars_cli"]
 
 [profile.release]
 lto = true
