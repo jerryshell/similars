@@ -55,38 +55,38 @@ jobs:
             strip: false
             compress: true
             cargo_flags: ""
-          - os: ubuntu-latest
-            target: mips-unknown-linux-musl
-            artifact_name: target/mips-unknown-linux-musl/release/similars_cli
-            release_name: mips-unknown-linux-musl
-            cross: true
-            strip: false
-            compress: true
-            cargo_flags: "--no-default-features"
-          - os: ubuntu-latest
-            target: mipsel-unknown-linux-musl
-            artifact_name: target/mipsel-unknown-linux-musl/release/similars_cli
-            release_name: mipsel-unknown-linux-musl
-            cross: true
-            strip: false
-            compress: true
-            cargo_flags: "--no-default-features"
-          - os: ubuntu-latest
-            target: mips64-unknown-linux-gnuabi64
-            artifact_name: target/mips64-unknown-linux-gnuabi64/release/similars_cli
-            release_name: mips64-unknown-linux-gnuabi64
-            cross: true
-            strip: false
-            compress: false
-            cargo_flags: "--no-default-features"
-          - os: ubuntu-latest
-            target: mips64el-unknown-linux-gnuabi64
-            artifact_name: target/mips64el-unknown-linux-gnuabi64/release/similars_cli
-            release_name: mips64el-unknown-linux-gnuabi64
-            cross: true
-            strip: false
-            compress: false
-            cargo_flags: "--no-default-features"
+          # - os: ubuntu-latest
+          #   target: mips-unknown-linux-musl
+          #   artifact_name: target/mips-unknown-linux-musl/release/similars_cli
+          #   release_name: mips-unknown-linux-musl
+          #   cross: true
+          #   strip: false
+          #   compress: true
+          #   cargo_flags: "--no-default-features"
+          # - os: ubuntu-latest
+          #   target: mipsel-unknown-linux-musl
+          #   artifact_name: target/mipsel-unknown-linux-musl/release/similars_cli
+          #   release_name: mipsel-unknown-linux-musl
+          #   cross: true
+          #   strip: false
+          #   compress: true
+          #   cargo_flags: "--no-default-features"
+          # - os: ubuntu-latest
+          #   target: mips64-unknown-linux-gnuabi64
+          #   artifact_name: target/mips64-unknown-linux-gnuabi64/release/similars_cli
+          #   release_name: mips64-unknown-linux-gnuabi64
+          #   cross: true
+          #   strip: false
+          #   compress: false
+          #   cargo_flags: "--no-default-features"
+          # - os: ubuntu-latest
+          #   target: mips64el-unknown-linux-gnuabi64
+          #   artifact_name: target/mips64el-unknown-linux-gnuabi64/release/similars_cli
+          #   release_name: mips64el-unknown-linux-gnuabi64
+          #   cross: true
+          #   strip: false
+          #   compress: false
+          #   cargo_flags: "--no-default-features"
           - os: ubuntu-latest
             target: riscv64gc-unknown-linux-gnu
             artifact_name: target/riscv64gc-unknown-linux-gnu/release/similars_cli
