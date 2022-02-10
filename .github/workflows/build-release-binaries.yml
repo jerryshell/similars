@@ -124,6 +124,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: "Build Changelog"
+        id: build_changelog
+        uses: mikepenz/release-changelog-builder-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Setup Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
@@ -150,12 +156,6 @@ jobs:
         with:
           name: ${{ matrix.target }}
           path: ${{ matrix.artifact_name }}
-
-      - name: "Build Changelog"
-        id: build_changelog
-        uses: mikepenz/release-changelog-builder-action@v2.8.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       ###
       # Below this line, steps will only be ran if a tag was pushed.
