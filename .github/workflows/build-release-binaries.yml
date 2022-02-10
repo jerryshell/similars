@@ -124,12 +124,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: "Build Changelog"
-        id: build_changelog
-        uses: mikepenz/release-changelog-builder-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Setup Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
@@ -169,5 +163,4 @@ jobs:
           overwrite: true
           tag: ${{ github.ref }}
           asset_name: similars_cli-$tag-${{ matrix.release_name }}
-          body: ${{ steps.build_changelog.outputs.changelog }}
         if: startsWith(github.ref, 'refs/tags/v')
