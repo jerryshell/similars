@@ -2,6 +2,9 @@ name: Build release binaries (and publish them if this is a tag)
 
 on: [push, pull_request]
 
+env:
+  app_name: similars_cli
+
 jobs:
   binaries:
     name: ${{ matrix.os }} for ${{ matrix.target }}
@@ -9,7 +12,6 @@ jobs:
     timeout-minutes: 30
     strategy:
       matrix:
-        app_name: similars_cli
         target:
           - x86_64-unknown-linux-musl
           - aarch64-unknown-linux-musl
@@ -26,7 +28,7 @@ jobs:
         include:
           - os: ubuntu-latest
             target: x86_64-unknown-linux-musl
-            artifact_name: target/x86_64-unknown-linux-musl/release/${{ matrix.app_name }}
+            artifact_name: target/x86_64-unknown-linux-musl/release/${{ env.app_name }}
             release_name: x86_64-unknown-linux-musl
             cross: true
             strip: true
@@ -34,7 +36,7 @@ jobs:
             cargo_flags: ""
           - os: ubuntu-latest
             target: aarch64-unknown-linux-musl
-            artifact_name: target/aarch64-unknown-linux-musl/release/${{ matrix.app_name }}
+            artifact_name: target/aarch64-unknown-linux-musl/release/${{ env.app_name }}
             release_name: aarch64-unknown-linux-musl
             cross: true
             strip: false
@@ -42,7 +44,7 @@ jobs:
             cargo_flags: ""
           - os: ubuntu-latest
             target: armv7-unknown-linux-musleabihf
-            artifact_name: target/armv7-unknown-linux-musleabihf/release/${{ matrix.app_name }}
+            artifact_name: target/armv7-unknown-linux-musleabihf/release/${{ env.app_name }}
             release_name: armv7-unknown-linux-musleabihf
             cross: true
             strip: false
@@ -50,7 +52,7 @@ jobs:
             cargo_flags: ""
           - os: ubuntu-latest
             target: arm-unknown-linux-musleabihf
-            artifact_name: target/arm-unknown-linux-musleabihf/release/${{ matrix.app_name }}
+            artifact_name: target/arm-unknown-linux-musleabihf/release/${{ env.app_name }}
             release_name: arm-unknown-linux-musleabihf
             cross: true
             strip: false
@@ -58,7 +60,7 @@ jobs:
             cargo_flags: ""
           - os: ubuntu-latest
             target: mips-unknown-linux-musl
-            artifact_name: target/mips-unknown-linux-musl/release/${{ matrix.app_name }}
+            artifact_name: target/mips-unknown-linux-musl/release/${{ env.app_name }}
             release_name: mips-unknown-linux-musl
             cross: true
             strip: false
@@ -66,7 +68,7 @@ jobs:
             cargo_flags: "--no-default-features"
           - os: ubuntu-latest
             target: mipsel-unknown-linux-musl
-            artifact_name: target/mipsel-unknown-linux-musl/release/${{ matrix.app_name }}
+            artifact_name: target/mipsel-unknown-linux-musl/release/${{ env.app_name }}
             release_name: mipsel-unknown-linux-musl
             cross: true
             strip: false
@@ -74,7 +76,7 @@ jobs:
             cargo_flags: "--no-default-features"
           - os: ubuntu-latest
             target: mips64-unknown-linux-gnuabi64
-            artifact_name: target/mips64-unknown-linux-gnuabi64/release/${{ matrix.app_name }}
+            artifact_name: target/mips64-unknown-linux-gnuabi64/release/${{ env.app_name }}
             release_name: mips64-unknown-linux-gnuabi64
             cross: true
             strip: false
@@ -82,7 +84,7 @@ jobs:
             cargo_flags: "--no-default-features"
           - os: ubuntu-latest
             target: mips64el-unknown-linux-gnuabi64
-            artifact_name: target/mips64el-unknown-linux-gnuabi64/release/${{ matrix.app_name }}
+            artifact_name: target/mips64el-unknown-linux-gnuabi64/release/${{ env.app_name }}
             release_name: mips64el-unknown-linux-gnuabi64
             cross: true
             strip: false
@@ -90,7 +92,7 @@ jobs:
             cargo_flags: "--no-default-features"
           - os: ubuntu-latest
             target: riscv64gc-unknown-linux-gnu
-            artifact_name: target/riscv64gc-unknown-linux-gnu/release/${{ matrix.app_name }}
+            artifact_name: target/riscv64gc-unknown-linux-gnu/release/${{ env.app_name }}
             release_name: riscv64gc-unknown-linux-gnu
             cross: true
             strip: false
@@ -98,7 +100,7 @@ jobs:
             cargo_flags: "--no-default-features"
           - os: windows-latest
             target: x86_64-pc-windows-msvc
-            artifact_name: target/x86_64-pc-windows-msvc/release/${{ matrix.app_name }}.exe
+            artifact_name: target/x86_64-pc-windows-msvc/release/${{ env.app_name }}.exe
             release_name: x86_64-pc-windows-msvc.exe
             cross: false
             strip: true
@@ -106,7 +108,7 @@ jobs:
             cargo_flags: ""
           - os: macos-latest
             target: x86_64-apple-darwin
-            artifact_name: target/x86_64-apple-darwin/release/${{ matrix.app_name }}
+            artifact_name: target/x86_64-apple-darwin/release/${{ env.app_name }}
             release_name: x86_64-apple-darwin
             cross: false
             strip: true
@@ -114,7 +116,7 @@ jobs:
             cargo_flags: ""
           - os: ubuntu-latest
             target: x86_64-unknown-freebsd
-            artifact_name: target/x86_64-unknown-freebsd/release/${{ matrix.app_name }}
+            artifact_name: target/x86_64-unknown-freebsd/release/${{ env.app_name }}
             release_name: x86_64-unknown-freebsd
             cross: true
             strip: false
@@ -177,6 +179,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ${{ matrix.artifact_name }}
           tag: ${{ github.ref }}
-          asset_name: ${{ matrix.app_name }}-$tag-${{ matrix.release_name }}
+          asset_name: ${{ env.app_name }}-$tag-${{ matrix.release_name }}
           body: ${{ steps.changelog_reader.outputs.log_entry }}
         if: startsWith(github.ref, 'refs/tags/v')
