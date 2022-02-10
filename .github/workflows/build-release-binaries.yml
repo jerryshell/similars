@@ -21,7 +21,7 @@ jobs:
           - riscv64gc-unknown-linux-gnu
           - x86_64-pc-windows-msvc
           - x86_64-apple-darwin
-          - x86_64-unknown-freebsd
+          # - x86_64-unknown-freebsd
         include:
           - os: ubuntu-latest
             target: x86_64-unknown-linux-musl
@@ -111,14 +111,14 @@ jobs:
             strip: true
             compress: true
             cargo_flags: ""
-          - os: ubuntu-latest
-            target: x86_64-unknown-freebsd
-            artifact_name: target/x86_64-unknown-freebsd/release/similars_cli
-            release_name: x86_64-unknown-freebsd
-            cross: true
-            strip: false
-            compress: false
-            cargo_flags: ""
+          # - os: ubuntu-latest
+          #   target: x86_64-unknown-freebsd
+          #   artifact_name: target/x86_64-unknown-freebsd/release/similars_cli
+          #   release_name: x86_64-unknown-freebsd
+          #   cross: true
+          #   strip: false
+          #   compress: false
+          #   cargo_flags: ""
 
     steps:
       - name: Checkout code
