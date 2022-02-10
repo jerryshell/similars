@@ -151,31 +151,23 @@ jobs:
           name: ${{ matrix.target }}
           path: ${{ matrix.artifact_name }}
 
+      - name: "Build Changelog"
+        id: build_changelog
+        uses: mikepenz/release-changelog-builder-action@v2.8.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       ###
       # Below this line, steps will only be ran if a tag was pushed.
       ###
-
-      - name: Get tag name
-        id: tag_name
-        run: |
-          echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
-        shell: bash
-        if: startsWith(github.ref, 'refs/tags/v')
-
-      - name: Get CHANGELOG.md entry
-        id: changelog_reader
-        uses: mindsers/changelog-reader-action@v1
-        with:
-          version: ${{ steps.tag_name.outputs.current_version }}
-          path: ./CHANGELOG.md
-        if: startsWith(github.ref, 'refs/tags/v')
 
       - name: Publish
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ${{ matrix.artifact_name }}
+          overwrite: true
           tag: ${{ github.ref }}
           asset_name: similars_cli-$tag-${{ matrix.release_name }}
-          body: ${{ steps.changelog_reader.outputs.log_entry }}
+          body: ${{ steps.build_changelog.outputs.changelog }}
         if: startsWith(github.ref, 'refs/tags/v')
