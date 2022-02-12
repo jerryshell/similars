@@ -1,4 +1,5 @@
 use anyhow::Result;
+use cached::proc_macro::cached;
 use image::GenericImageView;
 
 pub fn get_resize_gray_image_by_path(
@@ -23,14 +24,15 @@ pub fn get_resize_gray_image_by_path(
     Ok(img_resize_gray)
 }
 
+#[cached(result = true)]
 pub fn get_image_hash_by_path(
-    path: &str,
+    path: String,
     hamming_width: u32,
     hamming_height: u32,
     debug_flag: bool,
 ) -> Result<Vec<u8>> {
     let img_resize_gray =
-        get_resize_gray_image_by_path(path, hamming_width, hamming_height, debug_flag)?;
+        get_resize_gray_image_by_path(&path, hamming_width, hamming_height, debug_flag)?;
     if debug_flag {
         if let Some(filename) = path.split('/').last() {
             println!("filename {}", filename);
@@ -60,14 +62,22 @@ pub fn get_image_distance_by_path(
     hamming_height: u32,
     debug_flag: bool,
 ) -> Result<usize> {
-    let img_x_hash =
-        get_image_hash_by_path(image_x_path, hamming_width, hamming_height, debug_flag)?;
+    let img_x_hash = get_image_hash_by_path(
+        image_x_path.to_string(),
+        hamming_width,
+        hamming_height,
+        debug_flag,
+    )?;
     if debug_flag {
         println!("img_x_hash {:?}", img_x_hash);
     }
 
-    let img_y_hash =
-        get_image_hash_by_path(image_y_path, hamming_width, hamming_height, debug_flag)?;
+    let img_y_hash = get_image_hash_by_path(
+        image_y_path.to_string(),
+        hamming_width,
+        hamming_height,
+        debug_flag,
+    )?;
     if debug_flag {
         println!("img_y_hash {:?}", img_y_hash);
     }
