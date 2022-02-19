@@ -6,6 +6,7 @@ fn test_get_image_distance_by_path1() {
         8,
         8,
         false,
+        false,
     )
     .unwrap();
     assert_eq!(distance, 3)
@@ -18,6 +19,7 @@ fn test_get_image_distance_by_path2() {
         "example_img1.jpg",
         8,
         8,
+        false,
         false,
     )
     .unwrap();

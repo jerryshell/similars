@@ -14,11 +14,16 @@ struct Args {
     #[clap(
         short = 'd',
         long,
-        help = "By default, the output is a percentile of similarity, and if this parameter is explicitly specified, the output is hamming distance."
+        help = "By default, the output is a percentile of similarity, and if --distance-flag is explicitly specified, the output is hamming distance."
     )]
     distance_flag: bool,
     #[clap(long)]
     debug_flag: bool,
+    #[clap(
+        long,
+        help = "If --clean-flag is explicitly specified, images in the wrong format will be deleted automatically"
+    )]
+    clean_flag: bool,
 }
 
 fn main() {
@@ -30,6 +35,7 @@ fn main() {
         args.hamming_width,
         args.hamming_height,
         args.debug_flag,
+        args.clean_flag,
     )
     .unwrap();
 

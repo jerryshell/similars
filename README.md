@@ -1,6 +1,6 @@
 # similaRS
 
-similaRS is a tool for calculating picture similarity. Written in Rust.
+similaRS is a tool for calculating image similarity. Written in Rust.
 
 ## Usage
 
@@ -9,8 +9,12 @@ USAGE:
     similars_cli [OPTIONS] --image-x-path <IMAGE_X_PATH> --image-y-path <IMAGE_Y_PATH>
 
 OPTIONS:
+        --clean-flag
+            If --clean-flag is explicitly specified, images in the wrong format will be deleted
+            automatically
+
     -d, --distance-flag
-            By default, the output is a percentile of similarity, and if this parameter is
+            By default, the output is a percentile of similarity, and if --distance-flag is
             explicitly specified, the output is hamming distance.
 
         --debug-flag
@@ -43,7 +47,7 @@ $ ./similars_cli -x example_img1.jpg -y example_img2.jpg
 95.3125
 ```
 
-If `-d` parameter is explicitly specified, the output is hamming distance.
+If `-d` is explicitly specified, the output is hamming distance.
 
 ```
 $ ./similars_cli -d -x example_img1.jpg -y example_img2.jpg
