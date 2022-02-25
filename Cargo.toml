@@ -3,3 +3,4 @@ members = ["similars_lib", "similars_cli"]
 
 [profile.release]
 lto = true
+strip = true
