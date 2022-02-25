@@ -6,4 +6,4 @@ authors = ["github.com/jerryshell"]
 
 [dependencies]
 similars_lib = { path = "../similars_lib" }
-clap = { version = "3.1.0", features = ["derive"] }
+clap = { version = "3.1.2", features = ["derive"] }
