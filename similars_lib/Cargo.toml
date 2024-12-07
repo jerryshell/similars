@@ -8,3 +8,4 @@ authors = ["github.com/jerryshell"]
 image = "*"
 anyhow = "*"
 cached = "*"
+tracing = "*"
