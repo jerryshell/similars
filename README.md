@@ -1,62 +1,45 @@
 # similaRS
 
-similaRS is a tool for calculating image similarity. Written in Rust.
+_similaRS_ is a tool for calculating image similarity written in Rust 🦀
 
-## Usage
+## How to use
+
+```bash
+cargo install --git https://github.com/jerryshell/similars
+```
 
 ```
-USAGE:
-    similars_cli [OPTIONS] --image-x-path <IMAGE_X_PATH> --image-y-path <IMAGE_Y_PATH>
+Usage: similars_cli [OPTIONS] --image-x-path <IMAGE_X_PATH> --image-y-path <IMAGE_Y_PATH>
 
-OPTIONS:
-        --clean-flag
-            If --clean-flag is explicitly specified, images in the wrong format will be deleted
-            automatically
-
-    -d, --distance-flag
-            By default, the output is a percentile of similarity, and if --distance-flag is
-            explicitly specified, the output is hamming distance.
-
-        --debug-flag
-
-
-    -h, --hamming-height <HAMMING_HEIGHT>
-            [default: 8]
-
-        --help
-            Print help information
-
-    -V, --version
-            Print version information
-
-    -w, --hamming-width <HAMMING_WIDTH>
-            [default: 8]
-
-    -x, --image-x-path <IMAGE_X_PATH>
-
-
-    -y, --image-y-path <IMAGE_Y_PATH>
+Options:
+  -x, --image-x-path <IMAGE_X_PATH>
+  -y, --image-y-path <IMAGE_Y_PATH>
+      --width <HAMMING_WIDTH>        [default: 8]
+      --height <HAMMING_HEIGHT>      [default: 8]
+  -d, --show-distance                By default, the output is the percentile of similarity, or the Hamming distance if --show-distance is explicitly specified.
+  -h, --help                         Print help
+  -V, --version                      Print version
 ```
 
 ## Example
 
-By default, the output is a percentile of similarity.
+By default, the output is the percentile of similarity
 
-```
-$ ./similars_cli -x example_img1.jpg -y example_img2.jpg
-95.3125
+```bash
+similars_cli -x example_img1.jpg -y example_img2.jpg
+# 95.3125
 ```
 
-If `-d` is explicitly specified, the output is hamming distance.
+If `-d` is explicitly specified, the output is Hamming distance
 
-```
-$ ./similars_cli -d -x example_img1.jpg -y example_img2.jpg
-3
+```bash
+similars_cli -d -x example_img1.jpg -y example_img2.jpg
+# 3
 ```
 
 ## References
 
-* [https://www.ruanyifeng.com/blog/2011/07/principle_of_similar_image_search.html](https://www.ruanyifeng.com/blog/2011/07/principle_of_similar_image_search.html)
+- [https://www.ruanyifeng.com/blog/2011/07/principle_of_similar_image_search.html](https://www.ruanyifeng.com/blog/2011/07/principle_of_similar_image_search.html)
 
 ## License
 

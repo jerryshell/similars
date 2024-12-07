@@ -1,42 +1,38 @@
 use clap::Parser;
 
 #[derive(Parser, Debug)]
-#[clap(about, version, author)]
+#[clap(version)]
 struct Args {
     #[clap(short = 'x', long)]
     image_x_path: String,
     #[clap(short = 'y', long)]
     image_y_path: String,
-    #[clap(short = 'w', long, default_value_t = 8)]
+    #[clap(long = "width", default_value_t = 8)]
     hamming_width: u32,
-    #[clap(short = 'h', long, default_value_t = 8)]
+    #[clap(long = "height", default_value_t = 8)]
     hamming_height: u32,
     #[clap(
         short = 'd',
         long,
-        help = "By default, the output is a percentile of similarity, and if --show-distance is explicitly specified, the output is hamming distance."
+        help = "By default, the output is the percentile of similarity, or the Hamming distance if --show-distance is explicitly specified."
     )]
     show_distance: bool,
 }
 
-fn main() {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args = Args::parse();
-
     let distance = similars_lib::get_image_distance_by_path(
         &args.image_x_path,
         &args.image_y_path,
         args.hamming_width,
         args.hamming_height,
-    )
-    .unwrap();
-
+    )?;
     if args.show_distance {
         println!("{}", distance);
-        return;
+        return Ok(());
     }
-
     let percentile =
-        (1.0f32 - distance as f32 / (args.hamming_width * args.hamming_height) as f32) * 100.0f32;
-
+        (1f32 - distance as f32 / (args.hamming_width * args.hamming_height) as f32) * 100f32;
     println!("{}", percentile);
+    Ok(())
 }

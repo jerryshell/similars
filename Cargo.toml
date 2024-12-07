@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["similars_lib", "similars_cli"]
+members = ["similars_cli", "similars_lib"]
 
 [profile.release]
 lto = true

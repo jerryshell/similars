@@ -1,8 +1,7 @@
 [package]
 name = "similars_cli"
-version = "0.2.6"
+version = "0.3.0"
 edition = "2021"
-authors = ["github.com/jerryshell"]
 
 [dependencies]
 similars_lib = { path = "../similars_lib" }
