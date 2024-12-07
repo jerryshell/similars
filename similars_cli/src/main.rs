@@ -21,7 +21,7 @@ struct Args {
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args = Args::parse();
-    let distance = similars_lib::get_image_distance_by_path(
+    let distance = similars_lib::image_distance(
         &args.image_x_path,
         &args.image_y_path,
         args.hamming_width,
