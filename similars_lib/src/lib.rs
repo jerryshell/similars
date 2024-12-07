@@ -9,7 +9,7 @@ pub fn get_resize_gray_image_by_path(
     debug_flag: bool,
     clean_flag: bool,
 ) -> Result<image::GrayImage> {
-    let img = match image::io::Reader::open(path) {
+    let img = match image::ImageReader::open(path) {
         Ok(reader) => match reader.decode() {
             Ok(img) => Ok(img),
             Err(e) => {

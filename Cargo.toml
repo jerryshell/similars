@@ -5,6 +5,5 @@ members = ["similars_lib", "similars_cli"]
 [profile.release]
 lto = true
 strip = true
-opt-level = "z"
 panic = "abort"
 codegen-units = 1
